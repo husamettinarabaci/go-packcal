@@ -66,7 +66,7 @@ http://localhost:16000
 or
 
 You can use with default package sizes. 
-Default package sizes are 250, 500, 1000, 2000, 5000, 10000, 20000, 50000.
+Default package sizes are 250, 500, 1000, 2000, 5000.
 ```bash
 POST http://localhost:16080/api/calc HTTP/1.1
 content-type: application/json
