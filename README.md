@@ -191,8 +191,10 @@ Create "release" branch and create a pull request to "release" branch and merge 
     │   ├── log.go
     │   ├── rest.go
     │   └── web.go
-    └── json
-        └── json.go
+    ├── json
+    │   └── json.go
+    └── slice
+        └── slice.go
 ```
 
 ## Contributing

@@ -1,7 +1,6 @@
 package presentation
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 
@@ -58,7 +57,6 @@ func (srv *WebServer) Calculate(c *gin.Context) {
 			return
 		}
 		results := dto.FromResponseObject(calcResponse.Response)
-		fmt.Printf("%+v\n", results)
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"error":   "",
 			"results": results,

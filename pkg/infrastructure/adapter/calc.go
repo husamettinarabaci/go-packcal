@@ -19,20 +19,9 @@ func NewCalcAdapter() CalcAdapter {
 
 func (a CalcAdapter) Calculate(ctx context.Context, calcRequest me.CalcRequest) (mo.Response, error) {
 	calcMapper := mp.FromCalcObject(calcRequest.Calc)
-	var err error
-	response := mo.Response{}
 	if err := calcMapper.IsValid(); err != nil {
-		return response, err
+		return calcMapper.ToResponseObject(), err
 	}
-	packs, counts, err := calc(calcMapper.Item, &calcMapper.PackSizes)
-	if err != nil {
-		return response, err
-	} else {
-		response = mo.NewResponse(packs, counts)
-		return response, nil
-	}
-}
-
-func calc(item int, packSizes *[]int) ([]int, []int, error) {
-	return []int{5000, 2000, 250}, []int{2, 1, 1}, nil
+	calcMapper.Calculate()
+	return calcMapper.ToResponseObject(), nil
 }
