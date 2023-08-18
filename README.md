@@ -1,5 +1,5 @@
 # go-packcal
-Micro-DDD (Hex-Arc) RestAPI for Package Calculator of Shipping
+Micro-DDD (Hex-Arc) RestAPI and Web UI for Package Calculator of Shipping
 
 [![Build](https://github.com/husamettinarabaci/go-packcal/actions/workflows/build.yml/badge.svg)](https://github.com/husamettinarabaci/go-packcal/actions/workflows/build.yml)
 [![Test](https://github.com/husamettinarabaci/go-packcal/actions/workflows/test.yml/badge.svg)](https://github.com/husamettinarabaci/go-packcal/actions/workflows/test.yml)
@@ -30,7 +30,7 @@ Micro-DDD (Hex-Arc) RestAPI for Package Calculator of Shipping
 [![Testify](https://img.shields.io/badge/GoLib-Testify-green.svg)](https://github.com/stretchr/testify/)
 
 ## Getting Started
-<b>PackCal</b> provides the ability to run a shell command with RestAPI. You can run it locally or as a container. 
+<b>PackCal</b> provides the ability to run a shell command with RestAPI or Web UI. You can run it locally or as a container. 
 
 It has been developed with <b>Domain Driven Design (Hex-Arc)</b> architecture and allows you to be included in the domain and perform external operations in all microservice infrastructures without additional development processes. 
 
