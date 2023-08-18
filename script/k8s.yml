@@ -32,28 +32,13 @@ kind: Service
 metadata:
   name: packcal
 spec:
-  clusterIP: None
-  ports:
-  - port: 16080
-    targetPort: 16080
-    name: packcal_restapi
-  - port: 16000
-    targetPort: 16000
-    name: packcal_webserver
-  selector:
-    app: packcal
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: packcal
-spec:
   type: LoadBalancer
   ports:
-    - port: 16080
-      targetPort: 16080
     - port: 16000
       targetPort: 16000
+      name: http
+    - port: 16080
+      targetPort: 16080
+      name: rest
   selector:
     app: packcal
