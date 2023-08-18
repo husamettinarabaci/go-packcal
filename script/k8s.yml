@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: packcal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: packcal
+  template:
+    metadata:
+      labels:
+        app: packcal
+    spec:
+      containers:
+        - name: packcal
+          image: devhsmtek/packcal:latest
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 18080
+            - containerPort: 18000
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: "0.2"
+            requests:
+              memory: 16Mi
+              cpu: "0.1"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: packcal
+spec:
+  clusterIP: None
+  ports:
+  - port: 18080
+    targetPort: 18080
+    name: packcal_restapi
+  - port: 18000
+    targetPort: 18000
+    name: packcal_webserver
+  selector:
+    app: packcal

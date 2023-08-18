@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
+          integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+    <title>Go PackCal</title>
+</head>
+
+<body>
+    <div style="text-align: center;"><h1>Go PackCal</h1></div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Calculate</div>
+            <div class="card-body">
+                <form action="/calculate" method="post">
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="item" placeholder="Your items...">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="pack_sizes_str" placeholder="Your pack sizes (Sperate with comma)...">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    &nbsp;
+    &nbsp;
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Results</div>
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <thead>
+                    <tr>
+                        <th scope="col">Pack Type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{range $element :=.results.Packs}}
+                        <tr><td>{{$element}}</td></tr>
+                    {{end}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

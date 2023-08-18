@@ -1,0 +1,3 @@
+debug: true
+webserver:
+  port: "18000"
