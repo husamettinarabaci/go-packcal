@@ -1,8 +1,8 @@
 name: Run Gosec
 on:
-  push:
+  pull_request:
     branches:
-      - main
+      - "devsecops"
 jobs:
   tests:
     runs-on: ubuntu-latest

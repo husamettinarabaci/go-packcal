@@ -118,6 +118,8 @@ DOCKERHUB_TOKEN
 
 Create "release" branch and create a pull request to "release" branch and merge it. Github Actions will build and push docker image to your dockerhub repo.
 
+If you want to trigger DevSecOps action for SAST, you can create a pull request to "devsecops" branch and merge it. Github Actions will run SAST action.
+
 ## Project Structure - Domain Driven Design (Hex-Arc)
 ```bash
 .
