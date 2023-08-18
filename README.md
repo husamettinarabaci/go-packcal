@@ -32,6 +32,7 @@ Micro-DDD (Hex-Arc) RestAPI and Web UI for Package Calculator of Shipping
 ## Getting Started
 <b>PackCal</b> provides optimal configuration of package size and product count for shipping with RestAPI or Web UI. You can run it locally or as a container. 
 
+Live Demo: [https://packcal.husamettinarabaci.com](https://packcal.husamettinarabaci.com)
 
 It has been developed with <b>Domain Driven Design (Hex-Arc)</b> architecture and allows you to be included in the domain and perform external operations in all microservice infrastructures without additional development processes. 
 
@@ -59,7 +60,7 @@ go test -v ./...
 ## Usage
 You can access the Web Site with the below URL.
 ```bash
-http://localhost:18000
+http://localhost:16000
 ```
 
 or
@@ -67,7 +68,7 @@ or
 You can use with default package sizes. 
 Default package sizes are 250, 500, 1000, 2000, 5000, 10000, 20000, 50000.
 ```bash
-POST http://localhost:18080/api/calc HTTP/1.1
+POST http://localhost:16080/api/calc HTTP/1.1
 content-type: application/json
 
 {
@@ -79,7 +80,7 @@ or
 
 You can use with custom package sizes. 
 ```bash
-POST http://localhost:18080/api/calc HTTP/1.1
+POST http://localhost:16080/api/calc HTTP/1.1
 content-type: application/json
 
 {
@@ -98,7 +99,7 @@ export LOCAL=true && go run cmd/main.go
 docker build -t {DOCKER_USERNAME}/{YOUR_REPO} -f script/Dockerfile .
 docker tag {DOCKER_USERNAME}/{YOUR_REPO} {DOCKER_USERNAME}/{YOUR_REPO}:latest
 docker push {DOCKER_USERNAME}/{YOUR_REPO}:latest
-docker run -p 18080:18080 -p 18000:18000 {DOCKER_USERNAME}/{YOUR_REPO}:latest
+docker run -p 16080:16080 -p 16000:16000 {DOCKER_USERNAME}/{YOUR_REPO}:latest
 ```
 
 ## Kubernetes Deploy

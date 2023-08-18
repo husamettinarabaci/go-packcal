@@ -17,8 +17,8 @@ spec:
           image: devhsmtek/packcal:latest
           imagePullPolicy: "Always"
           ports:
-            - containerPort: 18080
-            - containerPort: 18000
+            - containerPort: 16080
+            - containerPort: 16000
           resources:
             limits:
               memory: 128Mi
@@ -34,11 +34,26 @@ metadata:
 spec:
   clusterIP: None
   ports:
-  - port: 18080
-    targetPort: 18080
+  - port: 16080
+    targetPort: 16080
     name: packcal_restapi
-  - port: 18000
-    targetPort: 18000
+  - port: 16000
+    targetPort: 16000
     name: packcal_webserver
+  selector:
+    app: packcal
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: packcal
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 16080
+      targetPort: 16080
+    - port: 16000
+      targetPort: 16000
   selector:
     app: packcal
