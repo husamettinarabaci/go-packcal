@@ -74,9 +74,9 @@ func (a Calc) ToResponseObject() mo.Response {
 	)
 }
 
-func (a *Calc) Calculate() {
-	sort.Sort(sort.Reverse(sort.IntSlice(a.PackSizes)))
+func (a *Calc) Calculate() []int {
 	a.Results = a.CalculateCumulative(a.Item, a.PackSizes)
+	return a.Results
 }
 
 type Tuple struct {
@@ -85,7 +85,7 @@ type Tuple struct {
 }
 
 func (a Calc) CalculateCumulative(orderQty int, packSizes []int) []int {
-
+	sort.Sort(sort.Reverse(sort.IntSlice(packSizes)))
 	maxPackSize := 0
 	for _, pack := range packSizes {
 		if pack > maxPackSize {
@@ -131,5 +131,6 @@ func (a Calc) CalculateCumulative(orderQty int, packSizes []int) []int {
 		return tSlice.Sum(validCombinations[i].Combo) < tSlice.Sum(validCombinations[j].Combo)
 	})
 
+	sort.Sort(sort.Reverse(sort.IntSlice(validCombinations[0].Combo)))
 	return validCombinations[0].Combo
 }

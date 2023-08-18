@@ -35,7 +35,7 @@ func NewWebServer(qh pp.QueryPort, ch pp.CommandPort) *WebServer {
 	srv.engine.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
-	srv.engine.POST("/calculate", srv.Calculate)
+	srv.engine.POST("/", srv.Calculate)
 	return srv
 }
 
