@@ -125,16 +125,18 @@ Create "release" branch and create a pull request to "release" branch and merge 
 │   ├── log_local.yml
 │   ├── log.yml
 │   ├── rest_local.yml
-│   └── rest.yml
+│   ├── rest.yml
+│   ├── web_local.yml
+│   └── web.yml
 ├── core
 │   ├── application
 │   │   ├── infrastructure
 │   │   │   └── port
-│   │   │       ├── log.go
-│   │   │       └── shell.go
+│   │   │       ├── calc.go
+│   │   │       └── log.go
 │   │   ├── presentation
 │   │   │   ├── adapter
-│   │   │   │   ├── command.go
+│   │   │   │   ├── calc.go
 │   │   │   │   └── query.go
 │   │   │   └── port
 │   │   │       ├── command.go
@@ -144,42 +146,50 @@ Create "release" branch and create a pull request to "release" branch and merge 
 │   └── domain
 │       ├── model
 │       │   ├── entity
-│       │   │   ├── commandrequest.go
-│       │   │   └── commandresponse.go
+│       │   │   ├── calcrequest.go
+│       │   │   └── calcresponse.go
 │       │   ├── interface
 │       │   │   └── loggable.go
 │       │   └── object
-│       │       ├── command.go
+│       │       ├── calc.go
 │       │       ├── error.go
 │       │       └── response.go
 │       └── service
-│           └── service.go
+│           ├── service.go
+│           └── service_test.go
+├── doc
+│   ├── Hex-Arc-1.jpg
+│   └── Hex-Arc-2.jpg
 ├── go.mod
 ├── go.sum
 ├── LICENSE
 ├── pkg
 │   ├── infrastructure
 │   │   ├── adapter
-│   │   │   ├── log.go
-│   │   │   └── shell.go
+│   │   │   ├── calc.go
+│   │   │   └── log.go
 │   │   └── mapper
-│   │       └── command.go
+│   │       └── calc.go
 │   └── presentation
 │       ├── controller
-│       │   └── rest
-│       │       └── restapi.go
+│       │   ├── rest
+│       │   │   └── restapi.go
+│       │   └── web
+│       │       ├── views
+│       │       │   └── index.html
+│       │       └── web.go
 │       └── dto
-│           ├── commandrequest.go
-│           └── commandresponse.go
+│           ├── calcrequest.go
+│           └── calcresponse.go
 ├── README.md
 ├── script
 │   ├── Dockerfile
 │   └── k8s.yml
-├── TODO.md
 └── tool
     ├── config
     │   ├── log.go
-    │   └── rest.go
+    │   ├── rest.go
+    │   └── web.go
     └── json
         └── json.go
 ```
@@ -189,7 +199,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Tasks
 - [ ] Deploy Test Environment
-- [ ] Rewrite Readme.md
 
 ## Contact
 
