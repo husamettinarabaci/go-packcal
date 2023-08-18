@@ -76,57 +76,60 @@ func (a Calc) ToResponseObject() mo.Response {
 
 func (a *Calc) Calculate() {
 	sort.Sort(sort.Reverse(sort.IntSlice(a.PackSizes)))
-	a.Results = a.CalculateCumulative(a.Item, a.PackSizes, []int{})
+	a.Results = a.CalculateCumulative(a.Item, a.PackSizes)
 }
 
-func (a Calc) CalculateCumulative(item int, packSizes []int, res []int) []int {
-	//If the item is in the packSizes, return it
-	if tSlice.Contains(packSizes, item) {
-		return append(res, item)
-	}
-	remain := item
+type Tuple struct {
+	Packs int
+	Combo []int
+}
 
-	if len(res) != 0 {
-		temp := make([]int, len(packSizes))
-		copy(temp, packSizes)
-		sort.Ints(temp)
-		lowValue, highValue := tSlice.FindEdgest(temp, remain)
-		if remain >= lowValue && remain <= highValue {
-			res = append(res, highValue)
-			remain = remain - highValue
-		} else if remain >= lowValue {
-			res = append(res, lowValue)
-			remain = remain - lowValue
+func (a Calc) CalculateCumulative(orderQty int, packSizes []int) []int {
+
+	maxPackSize := 0
+	for _, pack := range packSizes {
+		if pack > maxPackSize {
+			maxPackSize = pack
 		}
 	}
 
-	if remain > 0 {
-		for _, packSize := range packSizes {
-			if remain >= packSize {
-				res = append(res, packSize)
-				remain = remain - packSize
-				return a.CalculateCumulative(remain, packSizes, res)
+	dp := make([]Tuple, orderQty+maxPackSize+1)
+	for i := range dp {
+		dp[i] = Tuple{orderQty + maxPackSize, []int{}}
+	}
+	dp[0] = Tuple{0, []int{}}
+
+	for i := 0; i < orderQty+maxPackSize+1; i++ {
+		for _, pack := range packSizes {
+			if pack <= i {
+				if 1+dp[i-pack].Packs < dp[i].Packs {
+					newCombo := append([]int(nil), dp[i-pack].Combo...)
+					newCombo = append(newCombo, pack)
+					dp[i] = Tuple{1 + dp[i-pack].Packs, newCombo}
+				}
 			}
 		}
-		if remain < packSizes[len(packSizes)-1] {
-			res = append(res, packSizes[len(packSizes)-1])
+	}
+
+	// Filter to get valid combinations and then sort them
+	maxPackSize = 0
+	for _, pack := range packSizes {
+		if pack > maxPackSize {
+			maxPackSize = pack
 		}
-
 	}
 
-	//If the sum of the results is in the packSizes, return it
-	sumResults := tslice.TSlice{}.Sum(res)
-	if tSlice.Contains(packSizes, sumResults) {
-		res = []int{sumResults}
-		return res
+	var validCombinations []Tuple
+	for _, combo := range dp[orderQty : orderQty+maxPackSize+1] {
+		if combo.Packs != orderQty+maxPackSize {
+			validCombinations = append(validCombinations, combo)
+		}
 	}
 
-	//If the closest value between the sum of the results and the order number is in the packSizes, return it
-	closest := tSlice.FindClosest(a.Item, packSizes)
-	if closest < sumResults && closest > a.Item {
-		res = []int{closest}
-		return res
-	}
+	// Sort by the sum of packs
+	sort.Slice(validCombinations, func(i, j int) bool {
+		return tSlice.Sum(validCombinations[i].Combo) < tSlice.Sum(validCombinations[j].Combo)
+	})
 
-	return res
+	return validCombinations[0].Combo
 }
