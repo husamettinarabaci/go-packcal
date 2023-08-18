@@ -199,7 +199,7 @@ Create "release" branch and create a pull request to "release" branch and merge 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Tasks
-- [ ] Deploy Test Environment
+- [ ] Redesign the project WebUI.
 
 ## Contact
 
