@@ -23,7 +23,7 @@ COPY --from=base /etc/group /etc/group
 
 COPY --from=base /main .
 COPY --from=base /app/config/ ./config/
-COPY --from=builder /app/pkg/presentation/controller/web/views/ ./views/
+COPY --from=base /app/pkg/presentation/controller/web/views/ ./views/
 
 USER packcal:packcal
 EXPOSE 18000
