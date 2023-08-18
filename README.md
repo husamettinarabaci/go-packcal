@@ -33,6 +33,7 @@ Micro-DDD (Hex-Arc) RestAPI and Web UI for Package Calculator of Shipping
 <b>PackCal</b> provides optimal configuration of package size and product count for shipping with RestAPI or Web UI. You can run it locally or as a container. 
 
 Live Demo (Web Site): [http://packcal.husamettinarabaci.com:16000](http://packcal.husamettinarabaci.com:16000)
+
 Live Demo (Rest API): [http://packcal.husamettinarabaci.com:16080/api/calc](http://packcal.husamettinarabaci.com:16080/api/calc)
 
 It has been developed with <b>Domain Driven Design (Hex-Arc)</b> architecture and allows you to be included in the domain and perform external operations in all microservice infrastructures without additional development processes. 
