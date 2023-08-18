@@ -30,7 +30,9 @@ Micro-DDD (Hex-Arc) RestAPI and Web UI for Package Calculator of Shipping
 [![Testify](https://img.shields.io/badge/GoLib-Testify-green.svg)](https://github.com/stretchr/testify/)
 
 ## Getting Started
-<b>PackCal</b> provides the ability to run a shell command with RestAPI or Web UI. You can run it locally or as a container. 
+<b>PackCal</b> provides optimal configuration of package size and product count for shipping with RestAPI or Web UI. You can run it locally or as a container. 
+
+Live Demo (Web Site): [http://packcal.husamettinarabaci.com:16000](http://packcal.husamettinarabaci.com:16000)
 
 It has been developed with <b>Domain Driven Design (Hex-Arc)</b> architecture and allows you to be included in the domain and perform external operations in all microservice infrastructures without additional development processes. 
 
@@ -58,15 +60,15 @@ go test -v ./...
 ## Usage
 You can access the Web Site with the below URL.
 ```bash
-http://localhost:18000
+http://localhost:16000
 ```
 
 or
 
 You can use with default package sizes. 
-Default package sizes are 250, 500, 1000, 2000, 5000, 10000, 20000, 50000.
+Default package sizes are 250, 500, 1000, 2000, 5000.
 ```bash
-POST http://localhost:18080/api/calc HTTP/1.1
+POST http://localhost:16080/api/calc HTTP/1.1
 content-type: application/json
 
 {
@@ -78,7 +80,7 @@ or
 
 You can use with custom package sizes. 
 ```bash
-POST http://localhost:18080/api/calc HTTP/1.1
+POST http://localhost:16080/api/calc HTTP/1.1
 content-type: application/json
 
 {
@@ -97,7 +99,7 @@ export LOCAL=true && go run cmd/main.go
 docker build -t {DOCKER_USERNAME}/{YOUR_REPO} -f script/Dockerfile .
 docker tag {DOCKER_USERNAME}/{YOUR_REPO} {DOCKER_USERNAME}/{YOUR_REPO}:latest
 docker push {DOCKER_USERNAME}/{YOUR_REPO}:latest
-docker run -p 18080:18080 -p 18000:18000 {DOCKER_USERNAME}/{YOUR_REPO}:latest
+docker run -p 16080:16080 -p 16000:16000 {DOCKER_USERNAME}/{YOUR_REPO}:latest
 ```
 
 ## Kubernetes Deploy
@@ -115,6 +117,8 @@ DOCKERHUB_TOKEN
 ```
 
 Create "release" branch and create a pull request to "release" branch and merge it. Github Actions will build and push docker image to your dockerhub repo.
+
+If you want to trigger DevSecOps action for SAST, you can create a pull request to "devsecops" branch and merge it. Github Actions will run SAST action.
 
 ## Project Structure - Domain Driven Design (Hex-Arc)
 ```bash
@@ -190,15 +194,17 @@ Create "release" branch and create a pull request to "release" branch and merge 
     │   ├── log.go
     │   ├── rest.go
     │   └── web.go
-    └── json
-        └── json.go
+    ├── json
+    │   └── json.go
+    └── slice
+        └── slice.go
 ```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Tasks
-- [ ] Deploy Test Environment
+- [ ] Redesign the project WebUI.
 
 ## Contact
 
